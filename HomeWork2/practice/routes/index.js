@@ -8,5 +8,6 @@ router.get('/', function(req, res, next) {
 
 router.use('/api', require('./api'));
 router.use('/blog', require('./blog'));
+router.use('/api/blog/post', require('./api/blog/post'));
 
 module.exports = router;
