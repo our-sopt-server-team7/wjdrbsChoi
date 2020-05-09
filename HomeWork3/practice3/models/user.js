@@ -1,5 +1,4 @@
-  
-module.exports = [
+  module.exports = [
     {
         id: 'gngsn',
         name: '박경선',

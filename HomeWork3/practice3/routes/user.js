@@ -93,5 +93,25 @@ router.post('/signin', async (req, res) => {
 
 });
 
+router.get('/profile/:id', async (req, res) => {
+  const id = req.params.id;
+  console.log(req.params.id);
+  const user = UserModel.filter(user => user.id == id)[0];
+
+  if (user === undefined) {
+    res.status(statusCode.BAD_REQUEST)
+      .send(util.fail(statusCode.BAD_REQUEST, resMessage.NO_USER));
+    return;
+  }
+
+  const dto = {
+    id : user.id,
+    name : user.name,
+    email : user.email
+  }
+
+  res.status(statusCode.OK)
+      .send(util.success(statusCode.OK, resMessage.READ_PROFILE_SUCCESS, dto))
+});
 
 module.exports = router;
