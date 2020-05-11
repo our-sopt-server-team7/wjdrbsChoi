@@ -7,9 +7,11 @@ let resMessage = require('../modules/responseMessage');
 
 /* GET users listing. */
 router.get('/', function(req, res, next) {
-  res.send('User 페이지, 사용자 정보입니다');
+  res.send(UserModel);
 });
 
+
+// Level1
 
 /* 
     ✔️ sign up
@@ -29,6 +31,7 @@ router.post('/signup', async (req, res) => {
       password,
       email
   } = req.body;
+
   // request data 확인 - 없다면 Null Value 반환
   if (!id || !name || !password || !email) {
       res.status(statusCode.BAD_REQUEST)
@@ -41,12 +44,22 @@ router.post('/signup', async (req, res) => {
           .send(util.fail(statusCode.BAD_REQUEST, resMessage.ALREADY_ID));
       return;
   }
+
+  const crypto = require('crypto');
+  const encrypt = (salt, password) => {
+    return crypto.pbkdf2Sync(password, salt.toString(), 1, 32, 'sha512').toString('hex');
+  }
+
+  const salt = crypto.randomBytes(32).toString('hex');
+  const hashed = encrypt(salt, password)
+
   UserModel.push({
       id,
       name,
-      password,
+      hashed,
       email
   });
+
   res.status(statusCode.OK)
       .send(util.success(statusCode.OK, resMessage.CREATED_USER, {
           userId: id
@@ -54,6 +67,7 @@ router.post('/signup', async (req, res) => {
 });
 
 
+// Level1
 /* 
     ✔️ sign in
     METHOD : POST
@@ -93,6 +107,8 @@ router.post('/signin', async (req, res) => {
 
 });
 
+// Level1
+
 router.get('/profile/:id', async (req, res) => {
   const id = req.params.id;
   console.log(req.params.id);
@@ -113,5 +129,6 @@ router.get('/profile/:id', async (req, res) => {
   res.status(statusCode.OK)
       .send(util.success(statusCode.OK, resMessage.READ_PROFILE_SUCCESS, dto))
 });
+
 
 module.exports = router;
