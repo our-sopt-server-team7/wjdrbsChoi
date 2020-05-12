@@ -1,4 +1,5 @@
 var express = require('express');
+const crypto = require('crypto');
 var router = express.Router();
 const UserModel  = require('../models/user');
 let util = require('../modules/util');
@@ -38,6 +39,7 @@ router.post('/signup', async (req, res) => {
           .send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
       return;
   }
+  
   //already ID
   if (UserModel.filter(user => user.id == id).length > 0) {
       res.status(statusCode.BAD_REQUEST)
@@ -45,7 +47,8 @@ router.post('/signup', async (req, res) => {
       return;
   }
 
-  const crypto = require('crypto');
+  // 비밀번호 암호화 하기 
+  
   const encrypt = (salt, password) => {
     return crypto.pbkdf2Sync(password, salt.toString(), 1, 32, 'sha512').toString('hex');
   }
@@ -56,6 +59,8 @@ router.post('/signup', async (req, res) => {
   UserModel.push({
       id,
       name,
+      password,
+      salt,
       hashed,
       email
   });
@@ -88,14 +93,12 @@ router.post('/signin', async (req, res) => {
   if (!id || !password) {
     return res.status(statusCode.BAD_REQUEST)
     .send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE))
-    
   }
 
   const user = UserModel.filter(user => user.id == id);
   if (user.length == 0) {
     return res.status(statusCode.BAD_REQUEST)
     .send(util.fail(statusCode.BAD_REQUEST, resMessage.NO_USER));
-    
   }
 
   if (user[0].password != password) {
