@@ -114,7 +114,6 @@ router.post('/signin', async (req, res) => {
 
 router.get('/profile/:id', async (req, res) => {
   const id = req.params.id;
-  console.log(req.params.id);
   const user = UserModel.filter(user => user.id == id)[0];
 
   if (user === undefined) {
