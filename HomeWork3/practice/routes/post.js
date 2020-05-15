@@ -1,45 +1,23 @@
 var express = require('express');
 var router = express.Router();
-const PostModel  = require('../models/post');
+let Post  = require('../models/post');
 let util = require('../modules/util');
 let statusCode = require('../modules/statusCode');
 let resMessage = require('../modules/responseMessage');
+// npm install moment 후에 사용
+var moment = require('moment');       
 
 
-// Level3 게시글 CRUD
+
+// Level3 게시글 CRUD (서버 파트장님 코드 참고!!)
 
 
 // 게시글 전부 조회
-router.get('/', function (req, res, next) {
-    res.status(statusCode.OK)
-    .send(util.success(statusCode.OK, resMessage.POST_SUCCESS, PostModel));
+router.get('/', async (req, res) => {
+  const dto = await Post.findAll();
+  res.status(statusCode.OK)
+      .send(util.success(statusCode.OK, resMessage.POST_SUCCESS, dto));
 });
-
-
-// 게시글 아이디로 조회
-
-router.get('/:id', async(req, res) => {
-    const id = req.params.id;
-    const post = PostModel.filter(post => post.id == id)[0];
-
-  if (post === undefined) {
-    res.status(statusCode.BAD_REQUEST)
-      .send(util.fail(statusCode.BAD_REQUEST, resMessage.No_POST));
-    return
-  }
-    const dto = {
-        id : post.id,
-        writer : post.writer,
-        content : post.content,
-        title : post.title,
-        date : post.date
-      }
-    
-      res.status(statusCode.OK)
-          .send(util.success(statusCode.OK, resMessage.READ_POST_SUCCESS, dto))
-    }
-  
-)
 
 module.exports = router;
 

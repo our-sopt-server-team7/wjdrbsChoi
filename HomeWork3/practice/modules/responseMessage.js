@@ -20,7 +20,10 @@ module.exports = {
     POST_SUCCESS : "게시글 전체 조회 성공",
 
     // 게시글 하나 조회
-    No_POST : "게시글 없음",
+    BAD_POSTIdx : "해당 인덱스를 가진 게시글은 존재하지 않습니다",
 
-    READ_POST_SUCCESS : "게시글 하나 조회 성공"
+    READ_POST_SUCCESS : "게시글 하나 조회 성공",
+    CREATED_POST: "게시글 쓰기 성공",
+
+
 };
