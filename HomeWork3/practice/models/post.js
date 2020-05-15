@@ -35,10 +35,18 @@ const post = {
 
     // 게시글 쓰기
 
-    writer : async(author, title, content, dateTime) => {
-        const last = postData.length - 1;          
-        const idx = postData[last].idx + 1;
+    write : async(author, title, content, dateTime) => {
+        let last = postData.length - 1;
 
+        let idx;
+        // postData 에 아무것도 존재하지 않을 때 (첫 게시글 쓴다는 말)
+        if (last == -1) {
+            idx = 1; 
+        }
+        else {
+            idx = postData[last].id + 1;
+        }
+        
         const dao = {
             idx,
             author,

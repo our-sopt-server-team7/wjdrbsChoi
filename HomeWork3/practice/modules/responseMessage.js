@@ -25,5 +25,10 @@ module.exports = {
     READ_POST_SUCCESS : "게시글 하나 조회 성공",
     CREATED_POST: "게시글 쓰기 성공",
 
+    // 게시글 쓰기
+
+    POST_SUCCESS_Write : "게시글 쓰기 성공",
+    POST_SUCCESS_Fail : "게시글 쓰기 실패"
+
 
 };
