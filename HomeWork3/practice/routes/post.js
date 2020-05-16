@@ -38,11 +38,16 @@ router.get('/:idx', async(req, res) => {
 });
 
 
+// 게시글 작성
+
 router.post('/write', async(req, res) => {
   const {author,title,content} = req.body;
+
+  // 게시글 작성시간 
   var now = moment();
   const dateTime = await now.format('YYYY-MM-DD');
 
+  // 파라미터가 부족할 때 에러
   if (!author || !title || !content) {
     res.status(statusCode.BAD_REQUEST)
         .send(util.fail(statusCode.BAD_REQUEST, resMessage.OUT_OF_VALUE));
@@ -50,6 +55,7 @@ router.post('/write', async(req, res) => {
     return;
   }
 
+  // 게시글 정상 작성
   const idx = await Post.write(author, title, content, dateTime);
 
   res.status(statusCode.OK)
@@ -57,8 +63,27 @@ router.post('/write', async(req, res) => {
   
 });
 
-
-
+router.put('/:idx', async (req, res) => {
+  const idx = req.params.idx;
+  const {
+      author,
+      title,
+      content
+  } = req.body;
+  if (!idx) {
+      res.status(statusCode.BAD_REQUEST)
+          .send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
+      return;
+  }
+  const dao = {author: author, title: title, content:content};
+  const post = await Post.update(idx,dao);
+  if (!post) {
+      return res.status(statusCode.DB_ERROR)
+          .send(util.success(statusCode.DB_ERROR, resMessage.UPDATE_FAIL));
+  }
+  res.status(statusCode.OK)
+      .send(util.success(statusCode.OK, resMessage.UPDATE_SUCCESS, post));
+});
 
 
 module.exports = router;

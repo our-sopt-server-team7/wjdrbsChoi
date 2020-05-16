@@ -1,23 +1,23 @@
 let postData = [
     {
         id : 1,
-        writer : "노드",
-        content : "노드JS는 재밌습니다",
-        title : "NodeJs",
+        author : "노드",
+        title : "노드JS는 재밌습니다",
+        content : "NodeJs",
         dateTime : "2020-05-12"
     },
     {
         id : 2,
-        writer : "스프링",
-        content : "스프링부트는 재밌습니다",
-        title : "SpringBoot",
+        author : "스프링",
+        title : "스프링부트는 재밌습니다",
+        content : "SpringBoot",
         dateTime : "2020-05-12"
     },
     {
         id : 3,
-        writer : "장고",
-        content : "장고는 재밌습니다",
-        title : "Django",
+        author : "장고",
+        title : "장고는 재밌습니다",
+        content : "Django",
         dateTime : "2020-05-12"
     }
 ]
@@ -59,8 +59,14 @@ const post = {
         return idx;
     },
 
-    update : async (idx, dao) => {
-        
+    // 게시글 수정
+    update: async (idx, dao) => {
+        for(key in dao) {
+            if (dao[key] !== undefined) {
+                postData[idx][`${key}`] = dao[key];
+            }
+        }
+        return postData[idx];
     }
 
 }

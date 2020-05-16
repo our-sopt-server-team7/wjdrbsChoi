@@ -28,7 +28,11 @@ module.exports = {
     // 게시글 쓰기
 
     POST_SUCCESS_Write : "게시글 쓰기 성공",
-    POST_SUCCESS_Fail : "게시글 쓰기 실패"
+    POST_SUCCESS_Fail : "게시글 쓰기 실패",
+
+    // 게시글 수정
+
+    UPDATE_SUCCESS : "게시글 수정완료",
 
 
 };
