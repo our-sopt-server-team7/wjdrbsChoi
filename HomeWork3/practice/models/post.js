@@ -1,20 +1,20 @@
 let postData = [
     {
-        id : 1,
+        idx : 1,
         author : "노드",
         title : "노드JS는 재밌습니다",
         content : "NodeJs",
         dateTime : "2020-05-12"
     },
     {
-        id : 2,
+        idx : 2,
         author : "스프링",
         title : "스프링부트는 재밌습니다",
         content : "SpringBoot",
         dateTime : "2020-05-12"
     },
     {
-        id : 3,
+        idx : 3,
         author : "장고",
         title : "장고는 재밌습니다",
         content : "Django",
@@ -44,7 +44,7 @@ const post = {
             idx = 1; 
         }
         else {
-            idx = postData[last].id + 1;
+            idx = postData[last].idx + 1;
         }
         
         const dao = {
@@ -61,12 +61,14 @@ const post = {
 
     // 게시글 수정
     update: async (idx, dao) => {
-        for(key in dao) {
+        for (key in dao) {
             if (dao[key] !== undefined) {
-                postData[idx][`${key}`] = dao[key];
+                console.log(key);
+                postData[idx - 1][`${key}`] = dao[key];
             }
         }
-        return postData[idx];
+
+        return postData[idx - 1];
     }
 
 }

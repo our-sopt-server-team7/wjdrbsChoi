@@ -70,13 +70,16 @@ router.put('/:idx', async (req, res) => {
       title,
       content
   } = req.body;
+
+
   if (!idx) {
       res.status(statusCode.BAD_REQUEST)
           .send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
       return;
   }
-  const dao = {author: author, title: title, content:content};
-  const post = await Post.update(idx,dao);
+  const dao = {author: author, title: title, content: content};
+  const post = await Post.update(idx, dao);
+
   if (!post) {
       return res.status(statusCode.DB_ERROR)
           .send(util.success(statusCode.DB_ERROR, resMessage.UPDATE_FAIL));
