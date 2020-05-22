@@ -64,7 +64,7 @@ const post = {
         for (key in dao) {
             if (dao[key] !== undefined) {
                 console.log(key);
-                postData[idx - 1][`${key}`] = dao[key];
+                postData[idx - 1][key] = dao[key];
             }
         }
 
