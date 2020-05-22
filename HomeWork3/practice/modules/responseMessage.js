@@ -34,5 +34,9 @@ module.exports = {
 
     UPDATE_SUCCESS : "게시글 수정완료",
 
+    DELETE_SUCCESS : "게시글 삭제 성공",
+
+    POST_INDEX_OUT : "게시글이 존재하지 않습니다",
+
 
 };

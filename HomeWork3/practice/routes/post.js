@@ -89,5 +89,25 @@ router.put('/:idx', async (req, res) => {
 });
 
 
+router.delete('/:idx', async (req, res) => {
+  const idx = req.params.idx;
+  if (!idx) {
+    res.status(statusCode.BAD_REQUEST)
+        .send(util.fail(statusCode.BAD_REQUEST, resMessage.NULL_VALUE));
+    return;
+  }
+
+  const check = await Post.delete(idx);
+  if (check) {
+    res.status(statusCode.OK)
+      .send(util.success(statusCode.NO_CONTENT, resMessage.DELETE_SUCCESS, check))
+  }
+  else {
+    res.status(statusCode.OK)
+        .send(util.fail(statusCode.BAD_REQUEST, resMessage.POST_INDEX_OUT));
+  }
+  
+})
+
 module.exports = router;
 

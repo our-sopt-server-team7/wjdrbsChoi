@@ -69,6 +69,17 @@ const post = {
         }
 
         return postData[idx - 1];
+    },
+
+    // 게시글 삭제
+
+    delete : async (idx) => {
+        if (postData.length < idx) {
+            return false;
+        }
+        
+        postData.splice(idx - 1);
+        return true;
     }
 
 }
