@@ -108,5 +108,6 @@ tmp/
 temp/
 
 config/
+.gitignore
 
 # End of https://www.gitignore.io/api/node
