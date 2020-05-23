@@ -4,7 +4,7 @@ const table = 'user';
 const user = {
     signup : async (name, password, email, phone) => {
         const fields = 'name, password, email, phone';
-        const questions = '?, ?, ?, ?, ?';
+        const questions = '?, ?, ?, ?';
         const values = [name, password, email, phone];
         const query = `INSERT INTO ${table}(${fields}) VALUES(${questions})`;
 
