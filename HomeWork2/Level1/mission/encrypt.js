@@ -11,6 +11,7 @@ const encrypt = (salt, password) => {
     });
 }
 
+
 fs.readFile(`${__dirname}/password.txt`, async (err, data) => {
     if (err) return console.log(err.message);
 

@@ -1,3 +1,4 @@
+// 함수 표현식
 let printNames = function() {
     console.log("이름은 " + this.name + ", 별명은 " + this.nickName + "이고, " + "성별은 " + this.gender + ", 주량은 " + this.drinkingCapacity + "병 입니다!");
 }

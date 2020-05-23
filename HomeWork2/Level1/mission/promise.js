@@ -1,10 +1,10 @@
-let isMomHappy = false;
+let isMomHappy = true;
 var phone = {
     brand: 'Samsung',
     color: 'black'
 };
 
-var willIGetNewPhone = new Promise(
+var willIGetNewPhone = new Promise (
     function (resolve, reject) {
         if (isMomHappy) {
             resolve(console.log(phone)); // fulfilled

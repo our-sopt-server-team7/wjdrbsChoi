@@ -54,4 +54,4 @@ promise
     .then(func5)
     .catch(console.error) // errorhandler2
     .then(console.log);
-
+    

@@ -1,34 +1,24 @@
-let asyncFunc1 = (msg) =>
-    new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(`func1 : ${msg}`)
-        }, 1000)
-    })
+let postData = [
+    {
+        idx : 1,
+        author : "노드",
+        title : "노드JS는 재밌습니다",
+        content : "NodeJs",
+        dateTime : "2020-05-12"
+    },
+    {
+        idx : 2,
+        author : "스프링",
+        title : "스프링부트는 재밌습니다",
+        content : "SpringBoot",
+        dateTime : "2020-05-12"
+    },
+    {
+        idx : 3,
+        author : "장고",
+        title : "장고는 재밌습니다",
+        content : "Django",
+        dateTime : "2020-05-12"
+    }
+]
 
-
-let asyncFunc2 = (msg) =>
-    new Promise((resolve) => {
-        setTimeout(() => {
-            resolve(`func2 : ${msg}`);
-        }, 1000)
-    })
-
-
-
-function promiseMain() {
-    asyncFunc1("Hello").then((result) => {
-        console.log(result)
-        return asyncFunc2("world")
-    }).then((result) => {
-        console.log(result);
-    })
-}
-
-async function asyncMain() {
-    let result = await asyncFunc1("Hello")
-    console.log(result)
-    result = await asyncFunc2("world") 
-    console.log(result)
-}
-
-asyncMain();
