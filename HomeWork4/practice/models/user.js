@@ -3,9 +3,9 @@ const table = 'user';
 
 const user = {
     signup: async (id, name, password, salt, email) => {
-        const fields = 'id, name, password, salt, email';
-        const questions = `?, ?, ?, ?, ?`;
-        const values = [id, name, password, salt, email];
+        const fields = 'name, password, salt, email';
+        const questions = `?, ?, ?, ?`;
+        const values = [name, password, salt, email];
         const query = `INSERT INTO ${table}(${fields}) VALUES(${questions})`;
         try {
             const result = await pool.queryParamArr(query, values);
@@ -21,7 +21,7 @@ const user = {
         }
     },
     checkUser: async (id) => {
-        const query = `SELECT * FROM ${table} WHERE id="${id}"`;
+        const query = `SELECT * FROM ${table} WHERE userIdx="${id}"`;
         try {
             const result = await pool.queryParam(query);
             if (result.length === 0) {
@@ -37,7 +37,7 @@ const user = {
         }
     },
     getUserById : async (id) => {
-        const query = `SELECT * FROM ${table} WHERE id=?`;
+        const query = `SELECT * FROM ${table} WHERE userId=?`;
         try {
             return await pool.queryParamArr(query, [id]);
         } catch (err) {

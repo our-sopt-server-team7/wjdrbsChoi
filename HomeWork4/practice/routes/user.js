@@ -65,7 +65,7 @@ router.post('/signin', async (req, res) => {
         .send(util.success(statusCode.OK, resMessage.LOGIN_SUCCESS, {
             userId: id
         }));
-});
+})
 
 router.get('/profile/:id', async (req, res) => {
     const id = req.params.id;
@@ -87,10 +87,11 @@ router.get('/profile/:id', async (req, res) => {
         name: user.name,
         email: user.email
     }
+
     res.status(statusCode.OK)
         .send(util.success(statusCode.OK, resMessage.READ_PROFILE_SUCCESS, {
             user: dto
-        }));
+    }));
 });
 
 module.exports = router;
