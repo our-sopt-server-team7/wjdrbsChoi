@@ -117,5 +117,4 @@ router.delete('/:idx', async(req, res) => {
 
 })
 
-
 module.exports = router;

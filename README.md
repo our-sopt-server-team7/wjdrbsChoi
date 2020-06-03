@@ -1,1 +1,0 @@
-# SOPT Server Part HomeWork 
