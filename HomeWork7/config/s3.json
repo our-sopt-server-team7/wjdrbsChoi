@@ -1,0 +1,5 @@
+{
+    "accessKeyId": "<S3 Access Key ID>",
+    "secretAccessKey": "<S3 Access Key>",
+    "region": "ap-northeast-2"
+}
