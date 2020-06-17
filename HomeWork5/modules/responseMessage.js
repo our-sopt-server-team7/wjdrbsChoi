@@ -23,5 +23,15 @@ module.exports = {
     // 프로필 조회
     READ_PROFILE_SUCCESS: '프로필 조회 성공',
 
-    DB_ERROR: 'DB 오류'
+    DB_ERROR: 'DB 오류',
+
+    // 게시글
+    POST_SUCCESS_WRITE : "게시글 쓰기 성공",
+    POST_FIND_ALL : "게시글 전체조회 성공",
+    POST_FIND_ONE : "게시글 하나조회 성공",
+    POST_NOT_FOUND : "해당 게시글이 존재하지 않습니다",
+    UPDATE_FAIL : "업데이트 실패",
+    UPDATE_SUCCESS : "업데이트 성공",
+    DELETE_FAIL : "삭제 실패",
+    DELETE_SUCCESS : "삭제 성공"
 };
