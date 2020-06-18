@@ -58,6 +58,28 @@ const post = {
             console.log('createdPost ERROR', err);
             throw err;
         }
+    },
+
+    editPost : async(postIdx, author, title, content, createdAt) => {
+        const query = `UPDATE ${table} SET author = "${author}", title = "${title}", content = "${content}" WHERE postIdx = ${postIdx}`;
+        try {
+            const result = await pool.queryParam(query);
+            return result;
+        }catch(err) {
+            console.log('editPost ERROR : ', err);
+            throw err;
+        }
+    },
+
+    deletePost : async(postIdx) => {
+        const query = `DELETE FROM ${table} WHERE postIdx = ${postIdx}`;
+        try {
+            const result = await pool.queryParam(query);
+            return result;
+        } catch(err) {
+            console.log("deletePost ERROR : ", err);
+            throw err;
+        }
     }
 
 }
