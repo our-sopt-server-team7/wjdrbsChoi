@@ -80,6 +80,10 @@ const post = {
             console.log("deletePost ERROR : ", err);
             throw err;
         }
+    },
+
+    test : async(req, res) => {
+        
     }
 
 }

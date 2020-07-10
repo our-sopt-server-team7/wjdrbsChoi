@@ -23,7 +23,6 @@ module.exports = {
     verify: async (token) => {
         let decoded;
         try {
-
             // 디코딩할 때도 idx와 name으로 분리해서 옴 
             decoded = jwt.verify(token, secretKey);
         } catch (err) {

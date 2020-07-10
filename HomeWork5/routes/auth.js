@@ -14,6 +14,7 @@ router.get('/local', async (req, res) => {
     }
 
     const user = await jwt.verify(token);
+    console.log(user);
 
     if (user == TOKEN_EXPIRED) {
         return res.json(util.fail(CODE.UNAUTHORIZED, MSG.EXPIRED_TOKEN));
@@ -29,6 +30,5 @@ router.get('/local', async (req, res) => {
 
     return res.json(util.success(CODE.OK, MSG.AUTH_SUCCESS));
 })
-
 
 module.exports = router;
